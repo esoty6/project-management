@@ -1,11 +1,14 @@
 import pluginVitest from "@vitest/eslint-plugin";
 import skipFormatting from "@vue/eslint-config-prettier/skip-formatting";
-import vueTsEslintConfig from "@vue/eslint-config-typescript";
+import { defineConfigWithVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
 import oxlint from "eslint-plugin-oxlint";
 import pluginPlaywright from "eslint-plugin-playwright";
 import pluginVue from "eslint-plugin-vue";
 
-export default [
+export default defineConfigWithVueTs(
+  pluginVue.configs["flat/recommended"],
+  vueTsConfigs.recommended,
+
   {
     name: "app/files-to-lint",
     files: ["**/*.{ts,mts,tsx,vue}"],
@@ -16,9 +19,6 @@ export default [
     ignores: ["**/dist/**", "**/dist-ssr/**", "**/coverage/**"],
   },
 
-  ...pluginVue.configs["flat/essential"],
-  ...vueTsEslintConfig(),
-
   {
     ...pluginVitest.configs.recommended,
     files: ["src/**/__tests__/*"],
@@ -28,15 +28,14 @@ export default [
     ...pluginPlaywright.configs["flat/recommended"],
     files: ["e2e/**/*.{test,spec}.{js,ts,jsx,tsx}"],
   },
+
   oxlint.configs["flat/recommended"],
   skipFormatting,
 
   {
-    "@typescript-eslint/consistent-type-imports": [
-      "error",
-      {
-        prefer: "type-imports",
-      },
-    ],
-  },
-];
+    rules: {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
+    },
+  }
+);
