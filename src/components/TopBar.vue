@@ -32,7 +32,8 @@ h1 {
 }
 
 img {
-  height: 100%;
+  aspect-ratio: 1/1;
+  height: 64px;
 }
 
 @media (hover: hover) {

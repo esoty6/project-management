@@ -34,6 +34,7 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+  font-size: clamp(6px, 1.5dvw, 10px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -80,7 +81,6 @@ body {
     "Droid Sans",
     "Helvetica Neue",
     sans-serif;
-  font-size: 16px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -90,4 +90,9 @@ body {
 ul,
 ol {
   list-style: none;
+}
+
+button {
+  border: unset;
+  cursor: pointer;
 }

@@ -29,7 +29,7 @@ a,
   #app {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 8fr;
     grid-template-rows: auto 1fr;
     row-gap: 3dvh;
   }

@@ -3,16 +3,24 @@ import { defineComponent } from "vue";
 import { RouterLink } from "vue-router";
 import CollapseMenu from "./CollapseMenu.vue";
 
+interface Data {
+  isOpen: Boolean;
+}
+
 export default defineComponent({
   components: {
     RouterLink,
     CollapseMenu,
   },
+
+  data(): Data {
+    return { isOpen: false };
+  },
 });
 </script>
 
 <template>
-  <CollapseMenu :open="true">
+  <CollapseMenu :is-open="isOpen">
     <menu>
       <nav>
         <ul>
@@ -27,5 +35,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 ul {
   font-size: 1.4rem;
+}
+
+li {
+  padding: 0.6dvh 0;
 }
 </style>
