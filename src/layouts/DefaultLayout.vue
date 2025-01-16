@@ -1,8 +1,8 @@
 <script lang="ts">
+import NavBar from "@/components/NavBar.vue";
+import TopBar from "@/components/TopBar.vue";
 import { defineComponent } from "vue";
 import { RouterView } from "vue-router";
-import NavBar from "../NavBar.vue";
-import TopBar from "../TopBar.vue";
 
 export default defineComponent({
   components: {

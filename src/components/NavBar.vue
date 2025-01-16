@@ -1,16 +1,31 @@
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from "vue";
 import { RouterLink } from "vue-router";
+import CollapseMenu from "./CollapseMenu.vue";
+
+export default defineComponent({
+  components: {
+    RouterLink,
+    CollapseMenu,
+  },
+});
 </script>
 
 <template>
-  <menu>
-    <nav>
-      <ul>
-        <li><RouterLink to="/"> Home </RouterLink></li>
-        <li><RouterLink to="projects"> Projects </RouterLink></li>
-        <li><RouterLink to="tasks"> Tasks </RouterLink></li>
-      </ul>
-    </nav>
-  </menu>
+  <CollapseMenu :open="true">
+    <menu>
+      <nav>
+        <ul>
+          <li><RouterLink to="/">Home</RouterLink></li>
+          <li><RouterLink to="projects">Projects</RouterLink></li>
+          <li><RouterLink to="tasks">Tasks</RouterLink></li>
+        </ul>
+      </nav>
+    </menu>
+  </CollapseMenu>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+ul {
+  font-size: 1.4rem;
+}
+</style>
