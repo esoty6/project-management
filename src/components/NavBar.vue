@@ -20,7 +20,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <CollapseMenu :is-open="isOpen">
+  <CollapseMenu :is-open="isOpen" :button-on-bottom="false">
     <menu>
       <nav>
         <ul>

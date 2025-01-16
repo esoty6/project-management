@@ -8,6 +8,7 @@ export default defineComponent({
 
   props: {
     isOpen: { type: Boolean as PropType<Boolean>, required: true },
+    buttonOnBottom: { type: Boolean as PropType<Boolean>, default: true },
   },
 
   setup(props) {
@@ -78,10 +79,25 @@ export default defineComponent({
 
 <template>
   <div class="wrapper">
+    <button
+      v-if="!buttonOnBottom"
+      class="toggle-btn"
+      :class="{ 'hide-border-bottom': isCollapsed, 'btn-top': !buttonOnBottom }"
+      @click="toggle"
+    >
+      <p class="arrow" :class="{ rotate: isCollapsed }">&#11167;</p>
+    </button>
     <Transition @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave" @leave="leave">
-      <div v-show="isCollapsed" class="content"><slot></slot></div>
+      <div v-show="isCollapsed" class="content">
+        <slot></slot>
+      </div>
     </Transition>
-    <button class="toggle-btn" :class="{ 'hide-border': isCollapsed }" @click="toggle">
+    <button
+      v-if="buttonOnBottom"
+      class="toggle-btn"
+      :class="{ 'hide-border-top': isCollapsed, 'btn-bottom': buttonOnBottom }"
+      @click="toggle"
+    >
       <p class="arrow" :class="{ rotate: isCollapsed }">&#11167;</p>
     </button>
   </div>
@@ -94,16 +110,31 @@ export default defineComponent({
   text-align: center;
   aspect-ratio: 6/2;
   color: white;
-  border-radius: 0 0 8px 8px;
-  transition: border 0.7s linear;
   border-top: 1px solid transparent;
   font-size: 1.6rem;
   border: 1px solid rgba(107, 107, 107, 0.24);
-  border-top-width: 4px;
   background-color: transparent;
+  transition: border 0.5s 0.5s linear;
 
-  &.hide-border {
+  &.btn-top {
+    border-radius: 8px 8px 0 0;
+  }
+
+  &.btn-bottom {
+    border-radius: 0 0 8px 8px;
+  }
+
+  &.hide-border-bottom,
+  &.hide-border-top {
+    transition: border 0s;
+  }
+
+  &.hide-border-top {
     border-top-color: transparent;
+  }
+
+  &.hide-border-bottom {
+    border-bottom-color: transparent;
   }
 }
 
