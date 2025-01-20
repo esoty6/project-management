@@ -1,21 +1,5 @@
-<script lang="ts">
-import { defineAsyncComponent } from "vue";
-export default {
-  components: {
-    TheWelcome: defineAsyncComponent(() => import("@/components/TheWelcome.vue")),
-  },
-  data() {
-    return {};
-  },
-  methods: {
-    load() {},
-  },
-};
-</script>
+<script lang="ts"></script>
 
 <template>
-  <main>
-    <TheWelcome />
-    <button @click="load">Load</button>
-  </main>
+  <div>home</div>
 </template>

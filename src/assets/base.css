@@ -34,7 +34,7 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
-  font-size: clamp(6px, 1.5dvw, 10px);
+  font-size: clamp(6px, 1.3dvw, 16px);
 }
 
 @media (prefers-color-scheme: dark) {

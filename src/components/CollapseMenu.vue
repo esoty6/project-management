@@ -106,12 +106,14 @@ export default defineComponent({
 <style lang="scss" scoped>
 .toggle-btn {
   width: 100%;
-  max-height: 30px;
+  min-height: 40px;
+  display: flex;
   text-align: center;
-  aspect-ratio: 6/2;
+  align-items: center;
+  justify-content: center;
   color: white;
   border-top: 1px solid transparent;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   border: 1px solid rgba(107, 107, 107, 0.24);
   background-color: transparent;
   transition: border 0.5s 0.5s linear;
@@ -139,7 +141,7 @@ export default defineComponent({
 }
 
 .arrow {
-  transition: transform 0.3s linear;
+  transition: all 0.3s linear;
 
   &.rotate {
     transform: rotateX(0.5turn);

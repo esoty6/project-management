@@ -39,5 +39,13 @@ ul {
 
 li {
   padding: 0.6dvh 0;
+
+  @media (pointer: coarse) {
+    display: flex;
+
+    a {
+      width: 100%;
+    }
+  }
 }
 </style>

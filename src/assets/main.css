@@ -1,7 +1,7 @@
 @import "./base.css";
 
 #app {
-  max-width: 1400px;
+  max-width: 1680px;
   margin: 0 auto;
   padding: 0 2rem;
   font-weight: normal;
@@ -29,8 +29,8 @@ a,
   #app {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 8fr;
+    grid-template-columns: 1fr 7fr;
     grid-template-rows: auto 1fr;
-    row-gap: 3dvh;
+    gap: 3dvh 3dvw;
   }
 }
