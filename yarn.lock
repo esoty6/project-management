@@ -4560,6 +4560,7 @@ __metadata:
     oxlint: "npm:^0.15.9"
     pinia: "npm:^2.3.1"
     prettier: "npm:^3.4.2"
+    resize-observer-polyfill: "npm:^1.5.1"
     sass-embedded: "npm:^1.83.4"
     typescript: "npm:~5.7.3"
     vite: "npm:^6.0.11"
@@ -4639,6 +4640,13 @@ __metadata:
     gopd: "npm:^1.2.0"
     set-function-name: "npm:^2.0.2"
   checksum: 10c0/83b88e6115b4af1c537f8dabf5c3744032cb875d63bc05c288b1b8c0ef37cbe55353f95d8ca817e8843806e3e150b118bc624e4279b24b4776b4198232735a77
+  languageName: node
+  linkType: hard
+
+"resize-observer-polyfill@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "resize-observer-polyfill@npm:1.5.1"
+  checksum: 10c0/5e882475067f0b97dc07e0f37c3e335ac5bc3520d463f777cec7e894bb273eddbfecb857ae668e6fb6881fd6f6bb7148246967172139302da50fa12ea3a15d95
   languageName: node
   linkType: hard
 

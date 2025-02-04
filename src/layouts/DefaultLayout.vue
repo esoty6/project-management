@@ -5,22 +5,24 @@ import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <TopBar />
+  <v-layout>
+    <TopBar />
 
-  <v-container fluid :style="{ marginTop: '72px', height: 'calc(100dvh - 72px)' }">
-    <v-row>
-      <v-col cols="2">
-        <aside>
-          <NavBar />
-        </aside>
-      </v-col>
-      <v-col cols="auto">
-        <main>
-          <router-view />
-        </main>
-      </v-col>
-    </v-row>
-  </v-container>
+    <v-container fluid :style="{ marginTop: '72px', height: 'calc(100dvh - 72px)' }">
+      <v-row>
+        <v-col cols="2">
+          <aside>
+            <NavBar />
+          </aside>
+        </v-col>
+        <v-col cols="auto">
+          <v-main>
+            <router-view />
+          </v-main>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-layout>
 </template>
 
 <style lang="scss" scoped>

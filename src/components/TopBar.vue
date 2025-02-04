@@ -8,7 +8,12 @@ const title = ref(import.meta.env.VITE_APP_TITLE);
   <v-app-bar :elevation="2" location="top" :height="72">
     <template #prepend>
       <router-link to="/">
-        <v-img :width="64" :height="64" src="src/assets/logo.svg" alt="Vue logo"></v-img>
+        <v-img
+          :width="64"
+          :height="64"
+          src="src/assets/logo.svg"
+          alt="Vue framework's logo"
+        ></v-img>
       </router-link>
     </template>
 
