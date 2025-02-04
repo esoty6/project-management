@@ -1,36 +1,37 @@
-<script lang="ts">
-import { defineComponent } from "vue";
-import { RouterLink } from "vue-router";
-import CollapseMenu from "./CollapseMenu.vue";
+<script lang="ts" setup>
+import { ref } from "vue";
 
-interface Data {
-  isOpen: Boolean;
-}
+const isRail = ref(false);
 
-export default defineComponent({
-  components: {
-    RouterLink,
-    CollapseMenu,
-  },
-
-  data(): Data {
-    return { isOpen: false };
-  },
-});
+const toggleDrawer = () => {
+  isRail.value = !isRail.value;
+};
 </script>
 
 <template>
-  <CollapseMenu :is-open="isOpen" :button-on-bottom="false">
-    <menu>
-      <nav>
-        <ul>
-          <li><RouterLink to="/">Home</RouterLink></li>
-          <li><RouterLink to="projects">Projects</RouterLink></li>
-          <li><RouterLink to="tasks">Tasks</RouterLink></li>
-        </ul>
-      </nav>
-    </menu>
-  </CollapseMenu>
+  <v-navigation-drawer :rail="isRail" location="left">
+    <v-list density="compact" nav>
+      <v-list-item
+        ><v-btn variant="plain" icon="mdi-menu" @click="toggleDrawer"></v-btn
+      ></v-list-item>
+    </v-list>
+    <v-divider></v-divider>
+    <v-list density="compact" nav>
+      <v-list-item prepend-icon="mdi-home" link title="Home" to="/"></v-list-item>
+      <v-list-item
+        prepend-icon="mdi-format-list-bulleted"
+        link
+        title="Projects"
+        to="/projects"
+      ></v-list-item>
+      <v-list-item
+        prepend-icon="mdi-checkbox-marked-outline"
+        link
+        title="Tasks"
+        to="/tasks"
+      ></v-list-item>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 <style lang="scss" scoped>
 ul {

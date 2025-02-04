@@ -1,28 +1,26 @@
-<script lang="ts">
+<script lang="ts" setup>
 import NavBar from "@/components/NavBar.vue";
 import TopBar from "@/components/TopBar.vue";
-import { defineComponent } from "vue";
 import { RouterView } from "vue-router";
-
-export default defineComponent({
-  components: {
-    TopBar,
-    NavBar,
-    RouterView,
-  },
-});
 </script>
 
 <template>
-  <header>
-    <TopBar />
-  </header>
-  <aside>
-    <NavBar />
-  </aside>
-  <main>
-    <RouterView />
-  </main>
+  <TopBar />
+
+  <v-container fluid :style="{ marginTop: '72px', height: 'calc(100dvh - 72px)' }">
+    <v-row>
+      <v-col cols="2">
+        <aside>
+          <NavBar />
+        </aside>
+      </v-col>
+      <v-col cols="auto">
+        <main>
+          <router-view />
+        </main>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <style lang="scss" scoped>

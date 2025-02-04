@@ -1,14 +1,13 @@
-<script lang="ts">
+<script lang="ts" setup>
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
-import { defineComponent } from "vue";
+import { ref } from "vue";
 
-export default defineComponent({
-  components: {
-    DefaultLayout,
-  },
-});
+const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+const theme = ref(prefersDarkTheme ? "dark" : "light");
 </script>
 
 <template>
-  <DefaultLayout />
+  <v-app :theme="theme">
+    <DefaultLayout />
+  </v-app>
 </template>
