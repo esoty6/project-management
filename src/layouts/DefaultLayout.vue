@@ -7,13 +7,10 @@ import { RouterView } from "vue-router";
 <template>
   <v-layout>
     <TopBar />
-
     <v-container fluid :style="{ marginTop: '72px', height: 'calc(100dvh - 72px)' }">
       <v-row>
         <v-col cols="2">
-          <aside>
-            <NavBar />
-          </aside>
+          <NavBar />
         </v-col>
         <v-col cols="auto">
           <v-main>
@@ -24,9 +21,3 @@ import { RouterView } from "vue-router";
     </v-container>
   </v-layout>
 </template>
-
-<style lang="scss" scoped>
-header {
-  grid-column: 1 / 3;
-}
-</style>

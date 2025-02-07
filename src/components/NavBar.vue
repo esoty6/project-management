@@ -1,21 +1,19 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { useDrawer } from "@/store/useDrawer.store";
+import { storeToRefs } from "pinia";
 
-const isRail = ref(false);
-
-const toggleDrawer = () => {
-  isRail.value = !isRail.value;
-};
+const { toggleRail } = useDrawer();
+const { isOpen, isRail } = storeToRefs(useDrawer());
 </script>
 
 <template>
-  <v-navigation-drawer :rail="isRail" location="left">
-    <v-list density="compact" nav>
-      <v-list-item
-        ><v-btn variant="plain" icon="mdi-menu" @click="toggleDrawer"></v-btn
-      ></v-list-item>
-    </v-list>
-    <v-divider></v-divider>
+  <v-navigation-drawer :model-value="isOpen" location="left" :rail="isRail">
+    <template v-if="$vuetify.display.lgAndUp">
+      <v-list density="compact" nav>
+        <v-list-item><v-icon @click="toggleRail">mdi-menu</v-icon></v-list-item>
+      </v-list>
+      <v-divider></v-divider>
+    </template>
     <v-list density="compact" nav>
       <v-list-item prepend-icon="mdi-home" link title="Home" to="/"></v-list-item>
       <v-list-item
@@ -33,20 +31,3 @@ const toggleDrawer = () => {
     </v-list>
   </v-navigation-drawer>
 </template>
-<style lang="scss" scoped>
-ul {
-  font-size: 1.4rem;
-}
-
-li {
-  padding: 0.6dvh 0;
-
-  @media (pointer: coarse) {
-    display: flex;
-
-    a {
-      width: 100%;
-    }
-  }
-}
-</style>
