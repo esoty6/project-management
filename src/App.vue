@@ -1,13 +1,18 @@
 <script lang="ts" setup>
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
-import { ref } from "vue";
+import { onMounted } from "vue";
+import { useTheme } from "vuetify";
 
 const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
-const theme = ref(prefersDarkTheme ? "dark" : "light");
+const theme = useTheme();
+
+onMounted(() => {
+  theme.global.name.value = prefersDarkTheme ? "dark" : "light";
+});
 </script>
 
 <template>
-  <v-app :theme="theme">
+  <v-app>
     <DefaultLayout />
   </v-app>
 </template>

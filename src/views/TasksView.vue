@@ -15,7 +15,7 @@
         <span v-if="index < 2" class="d-inline-block text-truncate">{{ item.title }}</span>
 
         <span v-if="index === 2" class="text-grey text-caption align-self-center">
-          (+{{ value.length - 2 }} others)
+          (+{{ value.length - 2 }})
         </span>
       </template>
     </v-select>
@@ -37,7 +37,14 @@ const value = ref(["foo", "bar", "fizz"]);
 </script>
 
 <style lang="scss">
+@use "@/styles/main" as *;
+@use "sass:map";
+
 .v-field__input {
-  max-width: 240px;
+  width: 300px;
+  color: map.get($pink, "base");
+}
+.v-select__selection {
+  width: 100px;
 }
 </style>

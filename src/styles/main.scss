@@ -1,0 +1,10 @@
+// vuetify global SASS variables
+
+@forward "vuetify" with (
+  $body-font-family: (
+    "Nunito Sans",
+    "Open Sans",
+    sans-serif,
+    serif,
+  )
+);

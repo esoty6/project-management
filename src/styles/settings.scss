@@ -1,0 +1,5 @@
+// vuetify component SASS variables
+
+@forward "vuetify/settings" with (
+  $button-height: 20px
+);
