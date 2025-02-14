@@ -14,21 +14,13 @@ function toggleTheme() {
 </script>
 
 <template>
-  <v-app-bar :elevation="2" location="top" :height="72">
+  <v-app-bar class="bg-primary" :elevation="2" location="top" :height="72">
     <template #prepend>
       <v-app-bar-nav-icon
         v-if="$vuetify.display.mdAndDown"
         variant="plain"
         @click="toggleDrawer"
       ></v-app-bar-nav-icon>
-      <!-- <router-link to="/">
-        <v-img
-          :width="64"
-          :height="64"
-          src="src/assets/logo.svg"
-          alt="Vue framework's logo"
-        ></v-img>
-      </router-link> -->
     </template>
 
     <v-app-bar-title>
@@ -37,13 +29,15 @@ function toggleTheme() {
 
     <template #append>
       <v-list-item>
-        <v-icon
-          role="button"
-          class="rotate"
-          :class="{ 'rotate-icon': !theme.global.current.value.dark }"
-          @click="toggleTheme"
-          >mdi-theme-light-dark</v-icon
-        >
+        <v-btn icon role="button">
+          <v-icon
+            class="rotate"
+            color="tertiary"
+            :class="[{ 'rotate-icon': !theme.global.current.value.dark }]"
+            @click="toggleTheme"
+            >mdi-theme-light-dark</v-icon
+          >
+        </v-btn>
       </v-list-item>
     </template>
   </v-app-bar>

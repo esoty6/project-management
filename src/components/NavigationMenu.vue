@@ -8,7 +8,8 @@ const { isOpen, isRail } = storeToRefs(useDrawer());
 
 <template>
   <v-navigation-drawer
-    :model-value="isOpen"
+    class="bg-primary"
+    :model-value="!!isOpen"
     location="left"
     :rail="isRail && !$vuetify.display.mdAndDown"
   >
@@ -16,7 +17,7 @@ const { isOpen, isRail } = storeToRefs(useDrawer());
       <v-list density="compact" nav>
         <v-list-item><v-icon @click="toggleRail">mdi-menu</v-icon></v-list-item>
       </v-list>
-      <v-divider></v-divider>
+      <v-divider class="bg-secondary"></v-divider>
     </template>
     <v-list density="compact" nav>
       <v-list-item prepend-icon="mdi-home" link title="Home" to="/"></v-list-item>

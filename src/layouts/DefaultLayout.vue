@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import NavBar from "@/components/NavBar.vue";
-import TopBar from "@/components/TopBar.vue";
+import TopBar from "@/components/AppBar.vue";
+import NavBar from "@/components/NavigationMenu.vue";
 import { RouterView } from "vue-router";
 </script>
 

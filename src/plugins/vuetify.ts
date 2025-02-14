@@ -1,4 +1,4 @@
-import { darkTheme } from "@/configs/theme";
+import { themes } from "@/configs/theme";
 import { createVuetify } from "vuetify";
 
 import * as components from "vuetify/components";
@@ -8,9 +8,13 @@ const vuetify = createVuetify({
   components,
   directives,
   theme: {
-    defaultTheme: "light",
+    variations: {
+      colors: ["primary", "secondary", "tertiary"],
+      lighten: 2,
+      darken: 2,
+    },
     themes: {
-      ...darkTheme,
+      ...themes,
     },
   },
 });
