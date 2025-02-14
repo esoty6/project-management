@@ -6,18 +6,16 @@ import { RouterView } from "vue-router";
 
 <template>
   <v-layout>
-    <TopBar />
-    <v-container fluid :style="{ marginTop: '72px', height: 'calc(100dvh - 72px)' }">
-      <v-row>
-        <v-col cols="2">
-          <NavBar />
-        </v-col>
-        <v-col cols="auto">
-          <v-main>
-            <router-view />
-          </v-main>
-        </v-col>
-      </v-row>
+    <v-container fluid>
+      <TopBar />
+      <v-col cols="2">
+        <NavBar />
+      </v-col>
+      <v-col cols="auto">
+        <v-main>
+          <router-view />
+        </v-main>
+      </v-col>
     </v-container>
   </v-layout>
 </template>
