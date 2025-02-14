@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useDrawer = defineStore("drawer-store", () => {
-  const isOpen = ref<Boolean | null>(null);
+  const isOpen = ref();
   const isRail = ref(false);
 
   function toggleRail() {
@@ -13,5 +13,9 @@ export const useDrawer = defineStore("drawer-store", () => {
     isOpen.value = !isOpen.value;
   }
 
-  return { isOpen, isRail, toggleRail, toggleDrawer };
+  function onUpdateModelValue(val: Boolean) {
+    isOpen.value = val;
+  }
+
+  return { isOpen, isRail, toggleRail, toggleDrawer, onUpdateModelValue };
 });

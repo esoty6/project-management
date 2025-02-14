@@ -2,16 +2,17 @@
 import { useDrawer } from "@/store/useDrawer.store";
 import { storeToRefs } from "pinia";
 
-const { toggleRail } = useDrawer();
+const { toggleRail, onUpdateModelValue } = useDrawer();
 const { isOpen, isRail } = storeToRefs(useDrawer());
 </script>
 
 <template>
   <v-navigation-drawer
     class="bg-primary"
-    :model-value="!!isOpen"
+    :model-value="isOpen"
     location="left"
     :rail="isRail && !$vuetify.display.mdAndDown"
+    @update:model-value="onUpdateModelValue"
   >
     <template v-if="$vuetify.display.lgAndUp">
       <v-list density="compact" nav>
