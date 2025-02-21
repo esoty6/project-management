@@ -18,6 +18,11 @@ const router = createRouter({
       name: "tasks",
       component: () => import("@/views/TasksView.vue"),
     },
+    {
+      path: "/flow",
+      name: "flow",
+      component: () => import("@/views/FlowView.vue"),
+    },
   ],
 });
 

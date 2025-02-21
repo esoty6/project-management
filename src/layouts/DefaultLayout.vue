@@ -5,17 +5,14 @@ import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <v-layout>
+  <v-layout ref="layout">
     <v-container fluid>
       <TopBar />
-      <v-col cols="2">
-        <NavBar />
-      </v-col>
-      <v-col cols="auto">
-        <v-main>
-          <router-view />
-        </v-main>
-      </v-col>
+      <NavBar />
+
+      <v-main scrollable class="ma-6">
+        <router-view />
+      </v-main>
     </v-container>
   </v-layout>
 </template>

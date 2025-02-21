@@ -2,7 +2,7 @@
   <div class="tasks">
     <h1>This is an tasks page</h1>
 
-    <v-card class="pa-5 w-25">
+    <v-card class="pa-5">
       <v-select
         v-model="modelValue"
         :items="items"

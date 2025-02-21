@@ -34,6 +34,7 @@ const { isOpen, isRail } = storeToRefs(useDrawer());
         title="Tasks"
         to="/tasks"
       ></v-list-item>
+      <v-list-item prepend-icon="mdi-sitemap" link title="Flow" to="/flow"></v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
