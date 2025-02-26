@@ -10,8 +10,10 @@ import { RouterView } from "vue-router";
       <TopBar />
       <NavBar />
 
-      <v-main scrollable class="ma-6">
-        <router-view />
+      <v-main scrollable>
+        <v-container>
+          <router-view />
+        </v-container>
       </v-main>
     </v-container>
   </v-layout>
