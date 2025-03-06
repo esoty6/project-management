@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import DefaultLayout from "@/layouts/DefaultLayout.vue";
-import { onMounted } from "vue";
+import { onMounted, defineAsyncComponent } from "vue";
 import { useTheme } from "vuetify";
+
+const DefaultLayout = defineAsyncComponent(() => import("@/layouts/DefaultLayout.vue"));
 
 const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
 const theme = useTheme();

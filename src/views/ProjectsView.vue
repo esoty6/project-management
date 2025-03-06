@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, useTemplateRef, defineEmits } from "vue";
+import { defineEmits, ref, useTemplateRef } from "vue";
 
 defineEmits(["submit"]);
 
-const formRef = useTemplateRef("form");
+const formRef = useTemplateRef<HTMLFormElement | null>("form");
 
 const projects = ref([
   {
@@ -61,13 +61,12 @@ const headersa = ref([
 const isMenuOpen = ref(false);
 const newColumnName = ref();
 const nameRules = ref([
-  (value) => {
-    console.log(!!value);
+  (value: string) => {
     if (!!value) return true;
 
     return "Name is required.";
   },
-  (value) => {
+  (value: string) => {
     if (value?.length <= 10) return true;
 
     return "Name must be less than 10 characters.";
@@ -75,7 +74,7 @@ const nameRules = ref([
 ]);
 
 function addColumn() {
-  if (!formRef.value.isValid) {
+  if (!formRef.value || !formRef.value.isValid) {
     return;
   }
 
@@ -83,6 +82,7 @@ function addColumn() {
     ...headersa.value,
     { title: newColumnName.value, key: newColumnName.value.toLowerCase() },
   ];
+
   isMenuOpen.value = !isMenuOpen.value;
   formRef.value.reset();
 }
@@ -99,7 +99,7 @@ function addColumn() {
   >
     <template #headers="{ columns, toggleSort, getSortIcon, isSorted }">
       <tr>
-        <th v-for="column in columns" :key="column.key" @click="toggleSort(column)">
+        <th v-for="(column, index) in columns" :key="index" @click="toggleSort(column)">
           {{ column.title }}
           <v-icon v-show="isSorted(column)" :icon="getSortIcon(column)"></v-icon>
         </th>
@@ -121,7 +121,7 @@ function addColumn() {
             </template>
 
             <template #default>
-              <v-form ref="form" validate-on="input submit" @submit.prevent="addColumn">
+              <v-form ref="form" validate-on="input" @submit.prevent="addColumn">
                 <v-card fluid class="pa-2 d-flex align-center">
                   <v-text-field
                     v-model="newColumnName"
@@ -135,6 +135,12 @@ function addColumn() {
             </template>
           </v-menu>
         </th>
+      </tr>
+    </template>
+
+    <template #body.append="{ columns }">
+      <tr>
+        <td v-for="_ in Object.keys(columns[0])">asd</td>
       </tr>
     </template>
   </v-data-table-virtual>

@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import InteractionControls from "@/components/flow/InteractionControls.vue";
 import { useFlow } from "@/store/flow/useFlow.store";
 import { VueFlow } from "@vue-flow/core";
 import "@vue-flow/core/dist/style.css";
 import "@vue-flow/core/dist/theme-default.css";
-
 import { storeToRefs } from "pinia";
+import { defineAsyncComponent } from "vue";
+
+const InteractionControls = defineAsyncComponent(
+  () => import("@/components/flow/InteractionControls.vue")
+);
 
 const flowStore = useFlow();
 

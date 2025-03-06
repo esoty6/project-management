@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import { computed, ref } from "vue";
+
+const items = ref([
+  "foo",
+  "barba3rbarbarbarbarbarbarbarbarbarbarbar",
+  "barbar4barbarbarbarbarbarbarbarbarbarbar",
+  "b2arbarbarbarbarbarbarbarbarbarbarbarbar",
+  "1barbarbarbarbarbarbarbarbarbarbarbarbar",
+  "fizz",
+  "buzz",
+  "fizzbuzz",
+  "foobar",
+]);
+const modelValue = ref(["foo", "bar", "fizz"]);
+const maxElems = computed(() => {
+  return modelValue.value.length >= 2 ? 2 : 1;
+});
+</script>
+
 <template>
   <div class="tasks">
     <h1>This is an tasks page</h1>
@@ -58,26 +78,6 @@
     </v-card>
   </div>
 </template>
-
-<script setup lang="ts">
-import { computed, ref } from "vue";
-
-const items = ref([
-  "foo",
-  "barba3rbarbarbarbarbarbarbarbarbarbarbar",
-  "barbar4barbarbarbarbarbarbarbarbarbarbar",
-  "b2arbarbarbarbarbarbarbarbarbarbarbarbar",
-  "1barbarbarbarbarbarbarbarbarbarbarbarbar",
-  "fizz",
-  "buzz",
-  "fizzbuzz",
-  "foobar",
-]);
-const modelValue = ref(["foo", "bar", "fizz"]);
-const maxElems = computed(() => {
-  return modelValue.value.length >= 2 ? 2 : 1;
-});
-</script>
 
 <style lang="scss">
 @use "@/styles/main" as *;

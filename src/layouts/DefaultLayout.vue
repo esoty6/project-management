@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import TopBar from "@/components/AppBar.vue";
-import NavBar from "@/components/NavigationMenu.vue";
+import { defineAsyncComponent } from "vue";
 import { RouterView } from "vue-router";
+
+const TopBar = defineAsyncComponent(() => import("@/components/AppBar.vue"));
+const NavBar = defineAsyncComponent(() => import("@/components/NavigationMenu.vue"));
 </script>
 
 <template>
