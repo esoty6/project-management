@@ -5,23 +5,33 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "Home",
+      meta: { icon: "mdi-home" },
       component: () => import("@/views/HomeView.vue"),
     },
     {
       path: "/projects",
-      name: "projects",
+      meta: { icon: "mdi-format-list-bulleted" },
+      name: "Projects",
       component: () => import("@/views/ProjectsView.vue"),
     },
     {
       path: "/tasks",
-      name: "tasks",
+      meta: { icon: "mdi-checkbox-marked-outline" },
+      name: "Tasks",
       component: () => import("@/views/TasksView.vue"),
     },
     {
       path: "/flow",
-      name: "flow",
+      meta: { icon: "mdi-sitemap" },
+      name: "Flow",
       component: () => import("@/views/FlowView.vue"),
+    },
+    {
+      path: "/widgets",
+      meta: { icon: "mdi-view-dashboard" },
+      name: "Widgets",
+      component: () => import("@/views/WidgetsView.vue"),
     },
   ],
 });

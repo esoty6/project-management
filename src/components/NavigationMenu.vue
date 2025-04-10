@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import router from "@/router";
 import { useDrawer } from "@/store/useDrawer.store";
 import { storeToRefs } from "pinia";
+import type { IconValue } from "vuetify/lib/composables/icons.mjs";
 
 const { toggleRail, onUpdateModelValue } = useDrawer();
 const { isOpen, isRail } = storeToRefs(useDrawer());
@@ -21,20 +23,14 @@ const { isOpen, isRail } = storeToRefs(useDrawer());
       <v-divider class="bg-secondary"></v-divider>
     </template>
     <v-list density="compact" nav>
-      <v-list-item prepend-icon="mdi-home" link title="Home" to="/"></v-list-item>
       <v-list-item
-        prepend-icon="mdi-format-list-bulleted"
+        v-for="route in router.getRoutes()"
+        :key="route.path"
         link
-        title="Projects"
-        to="/projects"
+        :title="route.name?.toString()"
+        :to="route.path"
+        :prepend-icon="route.meta.icon as IconValue"
       ></v-list-item>
-      <v-list-item
-        prepend-icon="mdi-checkbox-marked-outline"
-        link
-        title="Tasks"
-        to="/tasks"
-      ></v-list-item>
-      <v-list-item prepend-icon="mdi-sitemap" link title="Flow" to="/flow"></v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
