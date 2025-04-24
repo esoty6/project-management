@@ -20,7 +20,7 @@ const widgets = ref([
       :gs-min-w="7"
       :gs-min-h="2"
     >
-      <v-icon icon="mdi-grid" class="custom-handle"></v-icon>
+      <v-icon icon="mdi-dots-grid" class="custom-handle"></v-icon>
       <component :is="widget.component" v-bind="widget" />
     </div>
   </main>

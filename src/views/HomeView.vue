@@ -4,7 +4,6 @@ const overlay = ref(false);
 </script>
 
 <template>
-  <div>home</div>
   <v-row align="center" class="ma-4" justify="center">
     <v-card height="300" width="250">
       <v-row justify="center">
@@ -42,4 +41,8 @@ const overlay = ref(false);
       </v-card>
     </template>
   </v-dialog>
+
+  <v-window>
+    <v-window-item> asd </v-window-item>
+  </v-window>
 </template>
