@@ -1,133 +1,142 @@
 <script setup lang="ts">
-import { GridStack, type GridStackWidget } from "gridstack";
+import { GridStack } from "gridstack";
 import "gridstack/dist/gridstack.min.css";
-import { nextTick, onMounted, ref, watch, type Component } from "vue";
+import { onMounted, ref, watchEffect, type Component } from "vue";
 
 interface Props {
-  widgets?: { title: String; component: Component }[];
+  widgets: Array<{
+    id: string;
+    component: Component;
+    x?: number;
+    y?: number;
+    w?: number;
+    h?: number;
+    title: string;
+  }>;
+  loading: boolean;
 }
 
-const { widgets = [] } = defineProps<Props>();
-
-const count = ref(0);
-const info = ref("");
-const timerId = ref(-1);
-const options = ref({
-  float: true,
-  cellHeight: "70px",
-  minRow: 1,
-  margin: 0,
-  column: 28,
-  draggable: {
-    handle: ".custom-handle",
-  },
-  resizable: {
-    handles: "all",
-  },
-});
+const props = defineProps<Props>();
+const emit = defineEmits(["test"]);
 let grid: GridStack | null = null;
-const items: GridStackWidget[] = [
-  { x: 2, y: 1, h: 2 },
-  { x: 2, y: 4, w: 3 },
-  { x: 4, y: 2 },
-  { x: 3, y: 1, h: 2 },
-  { x: 0, y: 6, w: 2, h: 2 },
-];
+
+const count = ref("text etsd");
+
+watchEffect(() => {
+  console.log(props.loading);
+  grid?.getGridItems().forEach((item) => grid?.resizeToContent(item));
+});
 
 onMounted(() => {
-  grid = GridStack.init({ ...options.value });
-
-  grid.on("dragstop", function (event, element) {
-    const node = element.gridstackNode;
-    if (node) {
-      info.value = `you just dragged node #${node.id} to ${node.x},${node.y} – good job!`;
-    }
+  grid = GridStack.init({
+    column: 12,
+    cellHeight: 30,
+    minRow: 2,
+    margin: 8,
+    draggable: {
+      handle: ".drag-handle",
+    },
+    resizable: {
+      handles: "all",
+    },
+    float: true,
   });
 
-  nextTick(() => {
-    widgets.forEach((widget) => {
-      if (widget) {
-        grid?.makeWidget(`#${widget.title}`);
-      }
+  // Add event listener for content changes
+  grid.on("resizestop", (event, item) => {
+    // grid?.resizeToContent(item);
+    grid?.resizeToContent(item);
+  });
+
+  // Initialize widgets with a slight delay to ensure proper sizing
+  setTimeout(() => {
+    props.widgets.forEach((widget) => {
+      grid?.makeWidget(`#widget-${widget.id}`);
     });
-  });
+    grid?.getGridItems().forEach((item) => grid?.resizeToContent(item));
+  }, 0);
 });
-
-watch(info, (newVal) => {
-  if (newVal.length === 0) return;
-
-  window.clearTimeout(timerId.value);
-  timerId.value = window.setTimeout(() => {
-    info.value = "";
-  }, 2000);
-});
-
-function addNewWidget() {
-  const node = items[count.value] || {
-    x: Math.round(12 * Math.random()),
-    y: Math.round(5 * Math.random()),
-    w: Math.round(1 + 3 * Math.random()),
-    h: Math.round(1 + 3 * Math.random()),
-    id: "",
-    content: "",
-  };
-  if (grid) {
-    node.id = node.content = String(count.value++);
-    grid.addWidget(node);
-  }
-}
 </script>
 
 <template>
-  <h1>How to integrate GridStack.js with Vue.js</h1>
-  <p>
-    As with any virtual DOM based framework, you need to check if Vue has rendered the DOM (or any
-    updates to it) <strong>before</strong> you initialize GridStack or call its methods. As a basic
-    example, check this component's <code>mounted</code> hook.
-  </p>
-  <p>
-    If your app requires more complex render logic than the inline template in `addWidget`, consider
-    <a href="https://github.com/gridstack/gridstack.js/tree/master/doc#makewidgetel">makeWidget</a>
-    to let Vue deal with DOM rendering.
-  </p>
-  <button type="button" @click="addNewWidget()">Add Widget</button> {{ info }}
-  <div class="grid-stack"></div>
+  <div class="grid-wrapper">
+    <div class="grid-stack">
+      <div
+        v-for="widget in widgets"
+        :id="`widget-${widget.id}`"
+        :key="widget.id"
+        class="grid-stack-item"
+        :gs-x="widget.x"
+        :gs-y="widget.y"
+        :gs-auto-position="!widget.x && !widget.y"
+      >
+        <div class="grid-stack-item-content">
+          <div class="grid-item-content">
+            <div class="grid-item-header">
+              <div class="drag-handle">⋮</div>
+            </div>
+            <v-btn @click="count += count">asd</v-btn>
+            <v-btn @click="emit('test')">asd</v-btn>
+            {{ count }}
+            <div class="widget-body">
+              <component :is="widget.component" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss">
-@use "sass:math";
-
-$start: 1;
-$end: 32;
-
-[class^="ui-resizable-"]:not(.ui-resizable-se) {
-  &:defined {
-    background-image: unset;
-  }
+.grid-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
 }
 
-.custom-handle {
-  margin: 16px;
-  cursor: move;
+.grid-item-content {
+  height: auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-@function fixed($float) {
-  @return math.div(math.round($float * 1000), 1000);
+.widget-body {
+  flex: 1;
+  padding: 16px;
+  overflow: visible;
+  height: auto;
 }
 
-@for $i from $start through $end {
-  .gs-#{$i} > .grid-stack-item {
-    width: fixed(math.div(100%, $i));
+.grid-item-header {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
 
-    @for $j from 1 through $i - 1 {
-      &[gs-x="#{$j}"] {
-        left: fixed(math.div(100%, $i) * $j);
-      }
+  .drag-handle {
+    cursor: move;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
 
-      &[gs-w="#{$j + 1}"] {
-        width: fixed(math.div(100%, $i) * ($j + 1));
-      }
+    &:hover {
+      background: black;
     }
   }
+}
+
+.grid-stack-item-content {
+  inset: 0;
+  position: absolute;
+  overflow: visible;
+}
+
+.grid-stack {
+  min-height: 100vh;
 }
 </style>

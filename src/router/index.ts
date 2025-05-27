@@ -33,6 +33,12 @@ const router = createRouter({
       name: "Widgets",
       component: () => import("@/views/WidgetsView.vue"),
     },
+    {
+      path: "/timeline",
+      meta: { icon: "mdi-view-dashboard" },
+      name: "Timeline",
+      component: () => import("@/views/TimelineView.vue"),
+    },
   ],
 });
 
