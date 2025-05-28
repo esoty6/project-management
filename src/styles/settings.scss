@@ -1,5 +1,15 @@
 // vuetify component SASS variables
 
 @forward "vuetify/settings" with (
-  $button-height: 20px
+  $button-height: 20px,
+  $field-control-height: 24px,
+  $input-control-height: 24px,
+  $field-control-padding-bottom: 0,
+  $field-control-padding-top: 0,
+  $field-control-padding-end: 0,
+  $field-control-padding-start: 0,
+  $field-input-padding-bottom: 0,
+  $field-input-padding-top: 0,
+  $field-border-width: 0,
+  $border-width-root: 0
 );
